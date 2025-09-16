@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit IT Ticket</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .flash-message { padding: 10px; margin-bottom: 15px; border-radius: 5px; }
+        .flash-message p { margin: 0; }
+        .flash-message.success { background-color: #d4edda; color: #155724; }
+        .flash-message.error { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h2>Submit a Ticket</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-message success">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/submit">
+        <label>Title:</label><br>
+        <input type="text" name="title"><br><br>
+
+        <label>Description:</label><br>
+        <textarea name="description"></textarea><br><br>
+
+        <label>Priority:</label><br>
+        <select name="priority">
+            <option value="P1">P1 - Critical</option>
+            <option value="P2">P2 - Normal</option>
+            <option value="P3">P3 - Low</option>
+        </select><br><br>
+
+        <button type="submit">Submit Ticket</button>
+    </form>
+</body>
+</html>

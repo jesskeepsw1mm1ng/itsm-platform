@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5000:5000"
+    env_file: .env
+
+  p1_worker:
+    build:
+      context: ./p1-worker
+    env_file: .env
+
+  p2_worker:
+    build:
+      context: ./p2-worker
+    env_file: .env
+
+  p3_worker:
+    build:
+      context: ./p3-worker
+    env_file: .env
+
+  dlq_handler:
+    build:
+      context: ./dlq-worker
+    env_file: .env
